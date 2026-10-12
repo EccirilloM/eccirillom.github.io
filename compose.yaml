@@ -1,0 +1,32 @@
+name: ettore-portfolio
+services:
+  web:
+    build: .
+    ports:
+      - "127.0.0.1:5173:5173"
+    volumes:
+      - .:/app
+      - dependencies:/app/node_modules
+    init: true
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:5173').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+  preview:
+    profiles: ["preview"]
+    build: .
+    command: ["sh", "-c", "pnpm build && pnpm preview"]
+    ports:
+      - "127.0.0.1:4173:4173"
+    volumes:
+      - .:/app
+      - dependencies:/app/node_modules
+    init: true
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:4173').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+volumes:
+  dependencies:

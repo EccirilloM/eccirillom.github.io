@@ -3,8 +3,11 @@ export const profile = {
   name: 'Ettore Cirillo',
   email: 'ettore.cirillo.dev@gmail.com',
   github: 'https://github.com/EccirilloM',
-  linkedin: 'https://www.linkedin.com/in/EttoreCirillo/',
+  instagram: 'https://www.instagram.com/eccirillo/',
+  linkedin: 'https://it.linkedin.com/in/ettorecirillo',
   source: 'https://github.com/EccirilloM/eccirillom.github.io',
+  cv: '/cv/Ettore_Cirillo_CV.pdf',
+  latestProject: 'https://github.com/EccirilloM/High_Performance_Parallel_Stokes_Brinkman_Solver',
 };
 
 export const copy = {

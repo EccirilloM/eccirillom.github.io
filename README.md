@@ -36,9 +36,12 @@ docker compose --profile preview down
 - `src/style.css`: stile e layout responsive.
 - `src/components/Globe.tsx`: globo originale (COBE MIT, asset incluso nel bundle).
 - `src/components/AmbientBackground.tsx`: componente adattato da portfolio-react.
-- `public/ettore.jpg`: foto ricavata dal CV.
+- `public/ettore.jpg`: foto usata nella sezione About.
+- `public/cv/Ettore_Cirillo_CV.pdf`: PDF definitivo, usato per lettura e download.
+- `src/components/SkillIcons.tsx`: icone laterali e icone in orbita.
+- `src/components/StackBackdrop.tsx`: movimento delle icone durante lo scorrimento.
 
-La lingua iniziale segue il browser. Preferenze lingua e movimento solo in memoria:
+La lingua iniziale è inglese; il selettore permette di passare in italiano. Preferenze lingua e movimento solo in memoria:
 nessun cookie, storage, API esterna, analytics o geolocalizzazione. Font locali.
 L'impostazione di riduzione movimento del sistema è rispettata.
 
@@ -65,11 +68,11 @@ inclusi nella build. I primi due sono disponibili anche in sviluppo.
 
 ## Contenuti da completare
 
-Le attività in corso riprendono il CV e richiedono conferma. AIRLab conteneva un
-commento sulle date da sostituire: mostriamo solo l'anno 2026. Esclusi esempi in
-presentation.tex, attività commentate, indirizzo di casa, telefono e metriche non
-contestualizzate. Il download CV attende un PDF pronto per il pubblico: nella
-cartella fornita ci sono sorgenti LaTeX. Nessun pulsante finto di download.
+Le attività in corso (magistrale e Sailing Team) sono state confermate dall’utente.
+Il PDF definitivo fornito il 13 ottobre 2026 è disponibile per lettura e download.
+Il documento originale viene conservato nella root; per aggiornare il sito sostituire
+la copia in public/cv/Ettore_Cirillo_CV.pdf. Latest punta al progetto NSBSolver,
+configurato in src/content.ts; non vengono fatte chiamate GitHub dal browser.
 
 ## Licenza
 

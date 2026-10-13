@@ -30,12 +30,12 @@ if "%selection%"=="4" goto logs
 if "%selection%"=="5" goto stop
 if "%selection%"=="6" goto install
 :dev
-docker compose up -d --build --wait web
+docker compose up -d --build --wait --wait-timeout 60 web
 if errorlevel 1 goto failed
 start "" "http://localhost:5173"
 goto done
 :preview
-docker compose --profile preview up -d --build --wait preview
+docker compose --profile preview up -d --build --wait --wait-timeout 120 preview
 if errorlevel 1 goto failed
 start "" "http://localhost:4173"
 goto done
@@ -53,12 +53,14 @@ goto done
 :install
 docker compose build web
 if errorlevel 1 goto failed
-docker compose run --rm web pnpm install --frozen-lockfile
+docker compose run --rm web pnpm install --frozen-lockfile --store-dir /root/.local/share/pnpm/store
 if errorlevel 1 goto failed
 goto done
 :failed
 echo.
-echo Operazione non riuscita. Leggi il messaggio sopra.
+echo Operazione non riuscita. Stato e ultimi log:
+docker compose ps -a
+docker compose logs --tail 40
 :done
 pause
 goto menu

@@ -1,11 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowDown, ArrowUpRight, ArrowRight, CodeXml as Github, BriefcaseBusiness as Linkedin, Mail, X, Menu, Pause, Play, Globe2 } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, Mail, X, Pause, Play, Globe2 } from 'lucide-react';
 import { MotionConfig, useReducedMotion } from 'motion/react';
 import AmbientBackground from './components/AmbientBackground';
+import About from './components/About';
+import StackBackdrop from './components/StackBackdrop';
 import Globe from './components/Globe';
+import { PortfolioHeader, PortfolioHero } from './components/HeaderHero';
 import { copy, experience, profile, projects, skills, type Language } from './content';
 
-const ids = ['about', 'projects', 'experience', 'world', 'contact'];
+
 
 function ProjectArt({ kind }: { kind: string }) {
   return <div className={`project-art art-${kind}`} aria-hidden="true">
@@ -17,12 +20,12 @@ function ProjectArt({ kind }: { kind: string }) {
 }
 
 export default function App() {
-  const [lang, setLang] = useState<Language>(() => navigator.language.startsWith('it') ? 'it' : 'en');
+  const [lang, setLang] = useState<Language>('en');
   const c = copy[lang];
   const osReduced = useReducedMotion();
   const [motionOverride, setMotionOverride] = useState<boolean | null>(null);
   const reduced = motionOverride ?? !!osReduced;
-  const [menu, setMenu] = useState(false);
+
   const [filter, setFilter] = useState('all');
   const [selected, setSelected] = useState<string | null>(null);
   const [privacy, setPrivacy] = useState(false);
@@ -42,41 +45,15 @@ export default function App() {
   const close = () => { setSelected(null); setPrivacy(false); };
   return <MotionConfig reducedMotion={reduced ? 'always' : 'never'}>
     <AmbientBackground reducedMotion={reduced} />
+    <StackBackdrop reduced={reduced} />
     <a className="skip-link" href="#main">{c.skip}</a>
-    <header className="site-header">
-      <a className="wordmark" href="#home" aria-label="Ettore Cirillo, home">ec<span>.</span></a>
-      <nav className={menu ? 'nav open' : 'nav'} aria-label={lang === 'it' ? 'Navigazione principale' : 'Main navigation'}>
-        {ids.map((id, i) => <a key={id} href={`#${id}`} onClick={() => setMenu(false)}>{c.nav[i]}</a>)}
-      </nav>
-      <div className="header-actions">
-        <div className="language-switch" role="group" aria-label={lang === 'it' ? 'Lingua' : 'Language'}>
-          <button onClick={() => setLang('it')} aria-pressed={lang === 'it'} lang="it">IT</button><span>/</span><button onClick={() => setLang('en')} aria-pressed={lang === 'en'} lang="en">EN</button>
-        </div>
-        <button className="menu-toggle icon-button" aria-label={lang === 'it' ? 'Menu' : 'Menu'} aria-expanded={menu} onClick={() => setMenu(!menu)}>{menu ? <X /> : <Menu />}</button>
-      </div>
-    </header>
+    <PortfolioHeader lang={lang} setLang={setLang} />
     <main id="main">
-      <section className="hero" id="home">
-        <div className="hero-side left" aria-hidden="true"><span>01 / SOFTWARE</span><i /><span>02 / SYSTEMS</span></div>
-        <div className="hero-side right" aria-hidden="true"><span>03 / ROBOTICS</span><i /><span>ALWAYS EXPLORING ↗</span></div>
-        <div className="hero-content">
-          <div className="role"><span className="status-dot" />{c.role}</div>
-          <p className="hello">{c.hello}</p>
-          <h1>{c.title}<br /><span>{c.titleAccent}</span></h1>
-          <p className="intro">{c.intro}</p>
-          <div className="hero-actions"><a className="button primary" href="#projects">{c.work}<ArrowDown size={16} /></a><a className="button secondary" href={`mailto:${profile.email}`}>{c.contact}<ArrowUpRight size={16} /></a></div>
-          <div className="socials"><a href={profile.github} aria-label="GitHub"><Github size={17} />GitHub</a><a href={profile.linkedin} aria-label="LinkedIn"><Linkedin size={17} />LinkedIn</a><span className="social-rule" /><span className="mono">POLIMI × KTH</span></div>
-        </div>
-        <a className="scroll-cue" href="#about">{c.scroll}<ArrowDown size={15} /></a>
-        <div className="hero-bottom">{c.fields.map((field, i) => <span key={field}><b>0{i + 1}</b>{field}</span>)}</div>
-      </section>
-      <section id="about" className="section about-section">
-        <div className="section-label">{c.aboutLabel}</div>
-        <div className="about-grid"><div><h2>{c.aboutTitle}</h2><p className="body-copy">{c.about}</p><p className="about-note">{c.aboutNote}</p></div>
-          <figure className="portrait"><img src="/ettore.jpg" alt="Ettore Cirillo" width="360" height="420" loading="lazy" /><figcaption><span>ETTORE CIRILLO</span><span>ENGINEER IN PROGRESS ↗</span></figcaption></figure>
-        </div>
-        <div className="education"><h3>{c.education}</h3><div><span className="mono">2025 — {c.present}</span><h4>{c.master}</h4><p>Politecnico di Milano × KTH · EIT Digital</p></div><div><span className="mono">2021 — 2025</span><h4>{c.bachelor}</h4><p>Politecnico di Milano × ELIS College</p></div></div>
-        <div className="skills"><div><h3>{c.skillsTitle}</h3><p>{c.skillsNote}</p></div><div className="skill-list">{skills.map(s => <span key={s}>{s}</span>)}</div></div>
+      <PortfolioHero lang={lang} reduced={reduced} />
+      <About lang={lang} reduced={reduced} />
+      <section className="section learning-section">
+        <div id="education" className="education"><h3>{c.education}</h3><div><span className="mono">2025 — {c.present}</span><h4>{c.master}</h4><p>Politecnico di Milano × KTH · EIT Digital</p></div><div><span className="mono">2021 — 2025</span><h4>{c.bachelor}</h4><p>Politecnico di Milano × ELIS College</p></div></div>
+        <div id="skills" className="skills"><div><h3>{c.skillsTitle}</h3><p>{c.skillsNote}</p></div><div className="skill-list">{skills.map(s => <span key={s}>{s}</span>)}</div></div>
       </section>
       <section id="projects" className="section">
         <div className="section-label">{c.projectsLabel}</div><div className="section-heading"><div><h2>{c.projectsTitle}</h2><p>{c.projectsIntro}</p></div><div className="filters" role="group" aria-label={lang === 'it' ? 'Filtra progetti' : 'Filter projects'}>{[['all', c.all], ['software', c.software], ['robotics', c.robotics]].map(([key, label]) => <button key={key} aria-pressed={filter === key} onClick={() => setFilter(key)}>{label}</button>)}</div></div>
@@ -84,7 +61,7 @@ export default function App() {
           <button className="project-open" onClick={() => setSelected(p.id)} aria-label={`${c.details}: ${p.name}`}><ProjectArt kind={p.id} /><div className="project-content"><div className="project-meta"><span>{p.name}</span><span>{p.year}</span></div><h3>{p.title}<ArrowUpRight size={21} /></h3><p>{p[lang].description}</p><div className="tags">{p.tags.slice(0, 3).map(tag => <span key={tag}>{tag}</span>)}</div></div></button>
         </article>)}</div>
       </section>
-      <section id="experience" className="section"><div className="section-label">{c.experienceLabel}</div><h2>{c.experienceTitle}</h2><div className="timeline">{experience.map(e => <article key={e.org}><span className="timeline-date mono">{e.date}</span><div className="timeline-dot" /><div><span className="company">{e.org}</span><h3>{e[lang][0]}</h3><p>{e[lang][1]}</p></div></article>)}</div><div className="certification"><span className="mono">ORACLE / 2022</span><span>Java SE 11 Developer</span></div></section>
+      <section id="experience" className="section"><div className="section-label">{c.experienceLabel}</div><h2>{c.experienceTitle}</h2><div className="timeline">{experience.map(e => <article key={e.org}><span className="timeline-date mono">{e.date}</span><div className="timeline-dot" /><div><span className="company">{e.org}</span><h3>{e[lang][0]}</h3><p>{e[lang][1]}</p></div></article>)}</div><div id="achievements" className="certification"><span className="mono">ORACLE / 2022</span><span>Java SE 11 Developer</span></div></section>
       <section id="world" className="section"><div className="section-label">{c.globeLabel}</div><h2>{c.globeTitle}</h2><p className="world-intro">{c.globeIntro}</p>
         <div className="world-panel"><Globe lang={lang} reduced={reduced} journey={worldTab === 'journey'} /><div className="world-info"><div className="world-tabs" role="group" aria-label={lang === 'it' ? 'Contenuto del globo' : 'Globe content'}><button aria-pressed={worldTab === 'journey'} onClick={() => setWorldTab('journey')}>{c.journey}</button><button aria-pressed={worldTab === 'visitors'} onClick={() => setWorldTab('visitors')}>{c.visitors}</button></div><div className="world-tab-content" aria-live="polite"><span className="data-badge"><span />{worldTab === 'journey' ? c.journeyBadge : c.visitorsBadge}</span>{worldTab === 'journey' ? <ol className="places">{c.places.map((place, i) => <li key={place}><span className="place-number">0{i + 1}</span><div><h3>{place}</h3><p>{c.placesDesc[i]}</p></div></li>)}</ol> : <div className="visitor-empty"><Globe2 size={28} /><h3>{c.visitorsTitle}</h3><p>{c.visitorsText}</p></div>}</div></div></div>
       </section>

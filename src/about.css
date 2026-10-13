@@ -1,0 +1,42 @@
+/* About layout adapted from Sagar Gupta's portfolio-react (GPL-3.0), 2026-10-13. */
+.portfolio-avatar{display:block;flex-shrink:0;object-fit:contain}
+.about-section-heading{display:flex;align-items:center;gap:32px;margin-bottom:56px}
+.about-eyebrow{font:11px var(--mono);color:#8a97a0;letter-spacing:.08em;margin:0 0 12px}
+.about-section-heading h2{font-size:clamp(1.875rem,1.3rem + 2vw,2.75rem);font-weight:680;letter-spacing:-.03em;line-height:1.05;margin:0}
+.about-section-heading h2 em{font-family:var(--font-accent);font-size:1.08em;font-weight:400;color:#60a5fa}
+.about-section-heading>span{flex:1;height:1px;background:linear-gradient(90deg,#2b353a,transparent)}
+.template-about-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:56px}
+.about-avatar-column{display:flex;justify-content:center;min-width:0}
+.about-avatar-frame{position:relative;width:320px;height:320px;flex-shrink:0}
+.about-avatar-halo{position:absolute;inset:36px;border-radius:50%;background:radial-gradient(circle,#60a5fa18,transparent 70%)}
+.about-orbit-ring{position:absolute;inset:36px;border:1px dashed #ffffff14;border-radius:50%}
+.about-avatar-disc{position:absolute;inset:76px;border-radius:50%;border:1px solid #ffffff14;background:linear-gradient(145deg,#19252e,#10171b);display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 0 56px #60a5fa0a}
+.about-portrait{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block}
+.about-orbit{position:absolute;inset:0;animation:about-orbit 40s linear infinite}
+.about-orbit-position{position:absolute;left:50%;top:50%;width:40px;height:40px;margin:-20px;transform:rotate(var(--angle)) translateX(124px) rotate(calc(-1 * var(--angle)))}
+.about-orbit-counter{width:100%;height:100%;animation:about-orbit 40s linear infinite reverse}
+.about-orbit-tile{width:100%;height:100%;display:grid;place-items:center;background:#151e24;border:1px solid #ffffff14;border-radius:12px;color:#ffffffb8;box-shadow:0 4px 14px #0003}
+.about-avatar-frame[data-running=false] .about-orbit,.about-avatar-frame[data-running=false] .about-orbit-counter{animation-play-state:paused}
+@keyframes about-orbit{to{transform:rotate(360deg)}}
+.about-status{display:inline-flex;align-items:center;gap:8px;max-width:100%;padding:4px 12px;border-radius:16px;background:#22c55e08;border:1px solid #22c55e20;margin-bottom:20px;color:#22c55e;font:500 12px/1.6 var(--mono)}
+.about-status .original-status-dot{width:7px;height:7px}
+.about-biography>h3{font-size:28px;font-weight:700;line-height:1.2;margin:0 0 16px}
+.about-highlights{display:flex;flex-direction:column;gap:12px}
+.about-highlight{position:relative;display:flex;gap:14px;padding:14px 16px;border-radius:12px;background:#ffffff08;border:1px solid #ffffff0f;transition:background .2s,border-color .2s}
+.about-highlight::before{content:"";position:absolute;left:-1px;top:12px;bottom:12px;width:2px;background:var(--card-accent);border-radius:2px;opacity:.4;transform:scaleY(.6);transition:transform .2s,opacity .2s}
+.about-highlight:hover{background:#ffffff0c;border-color:#ffffff1f}
+.about-highlight:hover::before{transform:scaleY(1);opacity:1}
+.about-highlight-icon{flex-shrink:0;display:grid;place-items:center;width:32px;height:32px;border-radius:10px;color:var(--card-accent);background:color-mix(in srgb,var(--card-accent) 10%,transparent);transition:transform .2s}
+.about-highlight:hover .about-highlight-icon{transform:rotate(6deg) scale(1.12)}
+.about-highlight p{font-size:14px;line-height:1.7;color:#9ca9b0;margin:0;min-width:0}
+.about-highlight strong{font-weight:600;color:#f4f6f7}
+.about-quick-facts{margin:56px 0 0;padding-top:32px;border-top:1px dashed #ffffff1f;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;text-align:center}
+.about-quick-facts>div{min-width:0;display:flex;flex-direction:column;align-items:center}
+.about-quick-facts svg{color:#60a5fa;margin-bottom:10px}
+.about-quick-facts dt{color:#8a97a0;font:10px var(--mono);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.about-quick-facts dd{font-size:13px;font-weight:500;line-height:1.5;margin:0;text-wrap:balance}
+.learning-section{padding-top:0}
+@media(max-width:800px){.template-about-grid{grid-template-columns:minmax(0,1fr);gap:32px}.about-section-heading{margin-bottom:32px;gap:20px}.about-avatar-column{height:256px}.about-avatar-frame{transform:scale(.8);transform-origin:top center}.about-biography>h3{font-size:22px}.about-status{font-size:11px}}
+@media(max-width:600px){.about-quick-facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:360px){.about-highlight{padding:12px;gap:10px}.about-quick-facts{gap:24px 12px}.about-quick-facts dd{font-size:12px}}
+html[data-motion=reduced] .about-highlight:hover .about-highlight-icon{transform:none}

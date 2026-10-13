@@ -96,6 +96,10 @@ le persone sul sito. Nessun servizio di terzi attivato a nome dell'utente.
 
 Usate le sezioni incluse in resume.tex senza indirizzo di casa o cellulare.
 presentation.tex contiene esempi del template non inclusi nel CV e non è biografia
-di Ettore. Nessun template/codice LaTeX redistribuito. Foto fornita da confermare
-per uso pubblico. LinkedIn non era leggibile dagli strumenti: link dal CV, senza
+di Ettore. Nessun template/codice LaTeX redistribuito. Foto riutilizzata in About su richiesta esplicita. LinkedIn non era leggibile dagli strumenti: link dal CV, senza
 attribuire al profilo contenuti non verificati.
+
+Aggiornamento 13 ottobre 2026: collegato il PDF definitivo fornito dall’utente,
+immutato, per lettura e download. Il documento include il recapito telefonico
+scelto dall’utente; l’indirizzo domestico non è presente. File servito localmente
+dalla cartella public/cv, senza visualizzatori o servizi esterni.

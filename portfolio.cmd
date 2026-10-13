@@ -12,11 +12,12 @@ echo   3. Verifica tipi, test e build
 echo   4. Mostra log (Ctrl+C per uscire)
 echo   5. Ferma i container del portfolio
 echo   6. Installa / riallinea le dipendenze
+echo   7. Aggiorna il riquadro GitHub
 echo   0. Esci
 echo.
-choice /c 1234560 /n /m "Scegli un numero: "
+choice /c 12345670 /n /m "Scegli un numero: "
 set "selection=%errorlevel%"
-if "%selection%"=="7" exit /b 0
+if "%selection%"=="8" exit /b 0
 docker info >nul 2>&1
 if errorlevel 1 (
   echo Avvia Docker Desktop, attendi che sia pronto e riprova.
@@ -29,6 +30,7 @@ if "%selection%"=="3" goto check
 if "%selection%"=="4" goto logs
 if "%selection%"=="5" goto stop
 if "%selection%"=="6" goto install
+if "%selection%"=="7" goto github
 :dev
 docker compose up -d --build --wait --wait-timeout 60 web
 if errorlevel 1 goto failed
@@ -54,6 +56,10 @@ goto done
 docker compose build web
 if errorlevel 1 goto failed
 docker compose run --rm web pnpm install --frozen-lockfile --store-dir /root/.local/share/pnpm/store
+if errorlevel 1 goto failed
+goto done
+:github
+docker compose run --rm web pnpm github:update
 if errorlevel 1 goto failed
 goto done
 :failed

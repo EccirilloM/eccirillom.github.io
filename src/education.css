@@ -1,0 +1,26 @@
+/* Education card typography, badges and timeline adapted from portfolio-react (GPL-3.0). */
+.template-education{max-width:1050px}
+.template-education .experience-date{color:#38bdf8}
+.template-education .experience-spine-fill{background:#38bdf8;box-shadow:0 0 8px #38bdf888}
+.template-education .experience-track:not(.is-current)>span{border-color:#38bdf8}
+.template-education .experience-track:not(.is-current)>span::after{background:#38bdf8}
+.education-card-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.education-heading-copy{min-width:0;flex:1}
+.education-institution{display:flex;align-items:center;gap:10px;min-width:0}
+.education-institution h3{font-size:20px;font-weight:700;line-height:1.25}
+.education-logo{display:grid;place-items:center;flex-shrink:0;width:40px;height:40px;border-radius:12px;background:#fffffff0;border:1px solid #ffffff1f;color:#1683ab}
+.education-logo img{display:block;width:36px;height:36px;object-fit:contain}
+.education-grade{flex-shrink:0;display:inline-flex;align-items:center;gap:8px;padding:4px 12px;border-radius:10px;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.12)}
+.education-grade-value{color:#60a5fa;font:700 30px/36px var(--mono);font-variant-numeric:tabular-nums}
+.education-current{display:inline-flex;align-items:center;gap:6px;flex-shrink:0;white-space:nowrap;padding:5px 9px;border-radius:10px;border:1px solid #22c55e1f;background:#22c55e0f;color:#22c55e;font:10px/1.6 var(--mono)}
+.education-current .original-status-dot{width:6px;height:6px}
+.education-card-body{margin-left:50px}
+.education-degree{margin:4px 0 0 50px;color:#60a5fa;font-size:14px;font-weight:600;line-height:1.65}
+.education-description{display:flex;align-items:flex-start;gap:6px;color:#9ca9b0;font-size:12px;line-height:1.8;margin-top:6px}
+.education-description>svg{flex-shrink:0;margin-top:4px}
+.education-skills{display:flex;flex-wrap:wrap;gap:5px;list-style:none;padding:0;margin:12px 0 0}
+.education-skills>li{padding:3px 8px;border-radius:6px;background:#38bdf814;border:1px solid #38bdf826;color:#38bdf8;font:11px/1.6 var(--mono)}
+.education-extra{margin-top:18px;padding-top:16px;border-top:1px dashed #ffffff14}
+.education-extra h4{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:12px;line-height:1.7;font-weight:600}
+.education-extra h4 span{color:#8a97a0;font:10px var(--mono);font-weight:400}
+@media(max-width:760px){.education-card-heading{flex-direction:column;gap:4px}.education-heading-copy{width:100%}.education-institution h3{font-size:18px}.education-card-body,.education-degree{margin-left:0}.education-grade,.education-current{align-self:flex-start}.template-education .experience-row{border-left-color:#38bdf855}.template-education .experience-row:has(.is-current){border-left-color:#22c55e}}

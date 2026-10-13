@@ -1,11 +1,22 @@
 import type { IconType } from 'react-icons';
-import { FaAngular, FaDocker, FaGitAlt, FaJava, FaLinux, FaNodeJs, FaPython, FaReact } from 'react-icons/fa6';
-import { SiCplusplus, SiGithubactions, SiJsonwebtokens, SiMqtt, SiPostgresql, SiRos, SiSpring, SiTailwindcss, SiTypescript } from 'react-icons/si';
+import { FaAngular, FaAws, FaCss3Alt, FaDatabase, FaDocker, FaGitAlt, FaHtml5, FaJava, FaLinux, FaNodeJs, FaPython, FaReact } from 'react-icons/fa6';
+import { SiBootstrap, SiC, SiCplusplus, SiExpress, SiGithubactions, SiJavascript, SiJsonwebtokens, SiJunit5, SiLeaflet, SiMqtt, SiPostgresql, SiPrisma, SiRos, SiSpring, SiTailwindcss, SiTypescript } from 'react-icons/si';
 
 const Gazebo: IconType = ({ size = 18, className, style }) =>
   <img src="/icons/gazebo.svg" width={size} height={size} className={className} style={style} alt="" />;
 
-const icons = {
+export const icons = {
+  c: { label: 'C', Icon: SiC, color: '#a8b9cc' },
+  javascript: { label: 'JavaScript', Icon: SiJavascript, color: '#f7df1e' },
+  html: { label: 'HTML', Icon: FaHtml5, color: '#e34f26' },
+  css: { label: 'CSS', Icon: FaCss3Alt, color: '#38a9db' },
+  sql: { label: 'SQL', Icon: FaDatabase, color: '#8db4e2' },
+  aws: { label: 'AWS', Icon: FaAws, color: '#ff9900' },
+  junit: { label: 'JUnit', Icon: SiJunit5, color: '#25a162' },
+  bootstrap: { label: 'Bootstrap', Icon: SiBootstrap, color: '#b38aff' },
+  express: { label: 'Express.js', Icon: SiExpress, color: '#f4f6f7' },
+  prisma: { label: 'Prisma', Icon: SiPrisma, color: '#a9c3d8' },
+  leaflet: { label: 'Leaflet', Icon: SiLeaflet, color: '#99c744' },
   docker: { label: 'Docker', Icon: FaDocker, color: '#2496ed' },
   python: { label: 'Python', Icon: FaPython, color: '#ffd343' },
   typescript: { label: 'TypeScript', Icon: SiTypescript, color: '#3178c6' },

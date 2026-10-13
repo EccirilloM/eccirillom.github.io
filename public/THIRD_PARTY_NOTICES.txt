@@ -73,3 +73,67 @@ responsive viewport gates and tab visibility. Skills are supplied by react-icons
 Gazebo icon: https://github.com/devicons/devicon/blob/master/icons/gazebo/gazebo-original.svg
 Devicon: MIT, Copyright (c) 2015 konpa. Full license: DEVICON-LICENSE.txt.
 The SVG is served locally; the Gazebo trademark belongs to its respective owner.
+
+## Experience timeline — 2026-10-13
+
+Experience.tsx and experience.css adapt the Experience, TimelineCardDesktop,
+TimelineCardMobile, TimelineCardContent, CompanyHeader and TimelineSpine layout
+from Sagar Gupta's portfolio-react (GPL-3.0). Dates, bilingual content and role
+progression replaced using Ettore's supplied LinkedIn experience text.
+ExperienceScene.tsx contains new decorative SVG scenes for Ettore's activities;
+no original author's employer scenes, logos or professional content are copied.
+Details modals deferred. Native disclosures expose responsibilities on each card.
+
+## Timeline progress and supplied Moth artwork — 2026-10-13
+
+The scroll-progress rail in Experience.tsx / experience.css adapts the original
+portfolio-react TimelineSpine approach (Sagar Gupta, GPL-3.0).
+public/illustrations/moth-side.svg derives from moth_side_view.svg supplied by
+Ettore in the repository root. Only the two stroke colours were changed for the
+dark background; the supplied root file is preserved. No additional rights to
+this supplied artwork are implied by the application's GPL notice.
+SailingPipeline, SailingLesson and FieldRobot are new illustrations for this site.
+
+## Education timeline — 2026-10-13
+
+Education.tsx and education.css adapt EducationCard, EducationCardHeader,
+EducationCardContent and TimelineSpine from Sagar Gupta's portfolio-react
+(GPL-3.0). Institutions, dates, grades and bilingual coursework replaced with
+Ettore's supplied CV and education details. Icons are provided by Lucide;
+no original author's school logos or personal education data are used.
+
+GradeBadge adapts the template's AnimatedCounter styling and viewport trigger,
+using @number-flow/react (MIT) for its digit-wheel animation. Reduced motion
+shows the final grade directly. Dependency license is included in production output.
+
+## Skills and technologies — 2026-10-13
+
+Skills.tsx and skills.css adapt SkillCategory, SkillRail, SkillTagGroup and
+SkillChip from Sagar Gupta's portfolio-react (GPL-3.0). Six bilingual groups
+use Ettore's approved skills and interests. The moving lists pause outside
+the viewport, in hidden tabs and on hover; reduced motion displays wrapped
+lists. Brand icons use the existing react-icons dependency and local Gazebo asset.
+
+## GitHub profile and contact — 2026-10-13
+
+GitHubProfile.tsx and profile-contact.css adapt GitHubCard, WideProfileCard,
+ContributionCalendar and SplitBar styling from Sagar Gupta's portfolio-react
+(GPL-3.0). Public data is retrieved directly from GitHub by a local update script;
+the original author's statistics and third-party contribution API are not used.
+Contact.tsx adapts Contact, ContactCard and ContactForm styling from that same
+template. Original contact details and mail service configuration are not used.
+The form prepares a mailto draft, with no external delivery service.
+
+Update, 2026-10-13: draft handoff replaced by optional direct EmailJS delivery
+through its documented REST API. No original author's account IDs are used.
+The form is disabled until the owner's own public service identifiers are set.
+No EmailJS client library or external script is loaded; requests occur only on submit.
+
+## Organisation logos supplied by Ettore — 2026-10-13
+
+The five files in public/organizations were supplied in the repository root:
+polimi_sailing_team.svg, airlab.png, avr.png, lega_navale.png and polimi.png.
+They are stored unchanged, with hyphenated filenames where applicable, and identify
+organisations in Ettore's experience and education. Marks and artwork remain the
+property of their respective owners; the application's GPL notice does not grant
+additional rights to these assets or imply endorsement by those organisations.

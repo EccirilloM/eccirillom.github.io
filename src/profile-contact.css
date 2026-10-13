@@ -1,0 +1,48 @@
+/* GitHub and Contact layout adapted from portfolio-react (GPL-3.0). */
+.template-github{max-width:1024px}
+.github-profile-card{padding:22px;border:1px solid #ffffff10;border-radius:20px;background:#0e1417;min-width:0;display:flex;flex-direction:column;gap:18px}
+.github-profile-heading{display:flex;align-items:center;gap:8px;min-width:0}
+.github-profile-heading h3{font:600 12px 'Inter Variable',sans-serif;text-transform:uppercase;letter-spacing:.04em}
+.github-profile-heading>span{font:11px var(--mono);color:#8a97a0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.github-profile-heading>a{margin-left:auto;display:inline-flex;align-items:center;gap:4px;font-size:11px;min-height:44px;flex-shrink:0}
+.github-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0}
+.github-metrics>div{display:flex;flex-direction:column;gap:6px;min-width:0}
+.github-metrics dt{order:1;font:10px/1.5 var(--mono);color:#8a97a0}
+.github-metrics dd{margin:0;font:700 30px/1.2 var(--mono);color:#60a5fa}
+.github-period,.github-source-note{font:11px/1.7 var(--mono);color:#8a97a0}
+.github-calendar-scroll{overflow-x:auto;overscroll-behavior-x:contain;padding-bottom:4px}
+.github-calendar{display:block;width:100%;min-width:650px;height:auto}
+.github-calendar [data-level="0"]{fill:#1d2529}.github-calendar [data-level="1"]{fill:#173e6e}.github-calendar [data-level="2"]{fill:#2563a5}.github-calendar [data-level="3"]{fill:#3c87d8}.github-calendar [data-level="4"]{fill:#80bbfa}
+.github-months{display:grid;min-width:650px;margin-bottom:6px;font:10px var(--mono);color:#8a97a0}
+.github-months>span{grid-row:1;white-space:nowrap}
+.github-legend{display:flex;align-items:center;justify-content:flex-end;gap:5px;font:10px var(--mono);color:#8a97a0}
+.github-legend i{width:10px;height:10px;border-radius:2px;background:#1d2529}.github-legend [data-level="1"]{background:#173e6e}.github-legend [data-level="2"]{background:#2563a5}.github-legend [data-level="3"]{background:#3c87d8}.github-legend [data-level="4"]{background:#80bbfa}
+.github-languages h4{font:11px/1.6 var(--mono);color:#9ca9b0;margin-bottom:12px}
+.github-language-bar{display:flex;gap:2px;height:7px;border-radius:5px;overflow:hidden}
+.github-languages ul{list-style:none;padding:0;margin:12px 0 0;display:flex;flex-wrap:wrap;gap:10px 16px}
+.github-languages li{display:flex;align-items:center;gap:6px;font:11px var(--mono)}
+.github-languages li>i{width:7px;height:7px;border-radius:50%}.github-languages li>span{color:#8a97a0}
+.template-contact{max-width:956px}
+.contact-template-grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:32px;align-items:start}
+.contact-template-options{display:flex;flex-direction:column;gap:12px;min-width:0}
+.contact-template-card{display:flex;align-items:center;gap:12px;padding:16px 20px;border:1px solid #ffffff14;border-left:3px solid var(--contact-accent);border-radius:0 16px 16px 0;background:#0e1417;transition:transform .2s,border-color .2s}
+.contact-template-icon{width:44px;height:44px;border-radius:12px;flex-shrink:0;display:grid;place-items:center;color:var(--contact-accent);background:color-mix(in srgb,var(--contact-accent) 8%,transparent);border:1px solid color-mix(in srgb,var(--contact-accent) 15%,transparent)}
+.contact-template-text{min-width:0;flex:1;display:flex;flex-direction:column;gap:2px}
+.contact-template-text>span{text-transform:uppercase;color:#8a97a0;font-size:11px;font-weight:600;letter-spacing:.06em}
+.contact-template-text>strong{font-size:13px;font-weight:500;overflow-wrap:anywhere;line-height:1.5}
+.contact-template-card>svg{color:var(--contact-accent);flex-shrink:0}
+.contact-vcard{margin-top:4px;align-self:flex-start;font-size:13px}
+.contact-hint{color:#8a97a0;font-size:12px;line-height:1.6}
+.contact-template-form{padding:32px 28px;display:flex;flex-direction:column;gap:16px;border:1px solid #ffffff14;border-radius:16px;background:#0e1417;min-width:0}
+.contact-template-form label{display:block;font-size:12px;font-weight:600;color:#9ca9b0;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+.contact-template-form input,.contact-template-form textarea{box-sizing:border-box;width:100%;border:1px solid #ffffff14;background:#ffffff04;color:#f4f6f7;border-radius:10px;padding:12px 14px;font:13px/1.6 'Inter Variable',sans-serif}
+.contact-template-form textarea{resize:vertical;min-height:130px}
+.contact-template-form input:focus,.contact-template-form textarea:focus{outline:2px solid #60a5fa;outline-offset:2px}
+.contact-template-form .original-btn-primary{width:100%;justify-content:center;gap:8px}
+.contact-copy{display:inline-flex;align-items:center;justify-content:center;gap:8px;color:#9ca9b0;font-size:12px;min-height:44px}
+.contact-feedback{color:#9ca9b0;font-size:12px;line-height:1.6}.contact-feedback:empty{display:none}
+.contact-template-form button:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.contact-honeypot{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+@media(hover:hover){.contact-template-card:hover{transform:translateY(-4px);background:#131a1e}}
+html[data-motion=reduced] .contact-template-card{transition:none}html[data-motion=reduced] .contact-template-card:hover{transform:none}
+@media(max-width:760px){.contact-template-grid{grid-template-columns:minmax(0,1fr);gap:24px}.contact-template-form{padding:20px 18px}.github-profile-card{padding:18px 16px}.github-metrics dd{font-size:24px}.github-profile-heading{flex-wrap:wrap}.contact-template-card{padding:16px}}

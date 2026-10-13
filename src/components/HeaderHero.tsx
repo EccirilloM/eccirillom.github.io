@@ -10,14 +10,14 @@ import { sideSkills } from './SkillIcons';
 
 const labels = {
   en: {
-    primary: ['About', 'Experience', 'Skills', 'Projects'],
-    more: ['Education', 'Awards', 'Stats'],
-    blurbs: ['Degrees and academic journey', 'Certifications and achievements', 'GitHub and coding activity'],
+    primary: ['About', 'Experience', 'Skills'],
+    more: ['Education', 'GitHub'],
+    blurbs: ['Degrees and academic journey', 'Profile and contribution calendar'],
     contact: 'Contact Me', moreLabel: 'More', hello: 'Hi, I’m',
     role: 'Mechatronics Engineering @ Polimi Sailing Team',
     headline: 'Software, robotics & high performance computing.',
     taglines: ['Curiosity, translated into code.', 'From software to the systems it moves.', 'Learning. Building. Exploring.'],
-    latest: 'Latest', latestText: 'NSBSolver · Parallel Stokes–Brinkman solver', projects: 'See projects',
+    latest: 'Latest', latestText: 'NSBSolver · Parallel Stokes–Brinkman solver', projects: 'Explore GitHub',
     read: 'Read CV', download: 'Download PDF',
     statsTitle: 'My work on GitHub', statsBody: 'Activity statistics will be added in a later step. You can already explore my public repositories.',
     github: 'Open GitHub profile', search: 'Search sections and links…', empty: 'No matching commands.',
@@ -26,14 +26,14 @@ const labels = {
     keyboard: '↑ ↓ navigate · Enter select · Esc close',
   },
   it: {
-    primary: ['Chi sono', 'Esperienze', 'Competenze', 'Progetti'],
-    more: ['Formazione', 'Riconoscimenti', 'Statistiche'],
-    blurbs: ['Studi e percorso universitario', 'Certificazioni e riconoscimenti', 'GitHub e attività di sviluppo'],
+    primary: ['Chi sono', 'Esperienze', 'Competenze'],
+    more: ['Formazione', 'GitHub'],
+    blurbs: ['Studi e percorso universitario', 'Profilo e calendario dei contributi'],
     contact: 'Contattami', moreLabel: 'Altro', hello: 'Ciao, sono',
     role: 'Ingegneria meccatronica @ Polimi Sailing Team',
     headline: 'Software, robotica e high performance computing.',
     taglines: ['La curiosità diventa codice.', 'Dal software ai sistemi che mette in movimento.', 'Imparare. Costruire. Esplorare.'],
-    latest: 'Novità', latestText: 'NSBSolver · Solver parallelo Stokes–Brinkman', projects: 'Vedi i progetti',
+    latest: 'Novità', latestText: 'NSBSolver · Solver parallelo Stokes–Brinkman', projects: 'Esplora GitHub',
     read: 'Leggi il CV', download: 'Scarica PDF',
     statsTitle: 'Il mio lavoro su GitHub', statsBody: 'Aggiungeremo le statistiche di attività in uno dei prossimi passaggi. Intanto puoi esplorare i miei repository pubblici.',
     github: 'Apri il profilo GitHub', search: 'Cerca sezioni e link…', empty: 'Nessun comando trovato.',
@@ -42,8 +42,8 @@ const labels = {
     keyboard: '↑ ↓ naviga · Invio seleziona · Esc chiudi',
   },
 };
-const primaryIds = ['about', 'experience', 'skills', 'projects'];
-const moreIds = ['education', 'achievements', 'stats'];
+const primaryIds = ['about', 'experience', 'skills'];
+const moreIds = ['education', 'stats'];
 const social = [
   { name: 'LinkedIn', url: profile.linkedin, Icon: FaLinkedin },
   { name: 'GitHub', url: profile.github, Icon: FaGithub },
@@ -65,7 +65,7 @@ export function PortfolioHeader({ lang, setLang }: { lang: Language; setLang: (l
   const [moreOpen, setMoreOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState('home');
-  const [dialogKind, setDialogKind] = useState<'palette' | 'stats' | null>(null);
+  const [dialogKind, setDialogKind] = useState<'palette' | null>(null);
   const [query, setQuery] = useState('');
   const dialog = useRef<HTMLDialogElement>(null);
   const more = useRef<HTMLDivElement>(null);
@@ -79,7 +79,7 @@ export function PortfolioHeader({ lang, setLang }: { lang: Language; setLang: (l
     const update = () => {
       frame = 0;
       setScrolled(window.scrollY > 20);
-      const sections = ['home', ...primaryIds, 'education', 'achievements', 'contact']
+      const sections = ['home', ...primaryIds, 'education', 'stats', 'contact']
         .map(id => ({ id, top: document.getElementById(id)?.getBoundingClientRect().top ?? Infinity }))
         .filter(s => s.top <= 160).sort((a, b) => b.top - a.top);
       setActive(sections[0]?.id ?? 'home');
@@ -126,7 +126,6 @@ export function PortfolioHeader({ lang, setLang }: { lang: Language; setLang: (l
 
   const go = (id: string) => {
     setMobileOpen(false); setMoreOpen(false);
-    if (id === 'stats') { setDialogKind('stats'); return; }
     closeDialog();
     const target = document.getElementById(id);
     if (target) {
@@ -190,7 +189,7 @@ export function PortfolioHeader({ lang, setLang }: { lang: Language; setLang: (l
         const next = index < 0 ? (e.key === 'ArrowDown' ? 0 : options.length - 1) : (index + (e.key === 'ArrowDown' ? 1 : -1) + options.length) % options.length;
         options[next].focus();
       }}>
-      {dialogKind === 'palette' ? <>
+      {dialogKind === 'palette' && <>
         <div className="original-palette-prompt"><span aria-hidden="true">~/ettore $</span><input ref={paletteInput} autoFocus value={query} onChange={e => setQuery(e.target.value)} placeholder={c.search} aria-label={c.search} onKeyDown={e => { if (e.key === 'Enter') (dialog.current?.querySelector('[data-command]') as HTMLElement | null)?.click(); }} /><button onClick={closeDialog} aria-label={c.close}><kbd>esc</kbd></button></div>
         <div className="original-palette-list">
           {rows.length > 0 && <p className="original-command-group">{c.navigation}</p>}
@@ -199,10 +198,7 @@ export function PortfolioHeader({ lang, setLang }: { lang: Language; setLang: (l
           {links.map(({ name, url, Icon }) => <a key={name} data-command href={url} target="_blank" rel="noopener noreferrer" className="original-command" onClick={closeDialog}><Icon size={15} /><code>open {name.toLowerCase()}</code><span>{name}<ArrowUpRight size={12} /></span></a>)}
           {!rows.length && !links.length && <p className="original-command-empty">{c.empty}</p>}
         </div><div className="original-palette-footer">{c.keyboard}</div>
-      </> : <div className="original-notice-inner">
-        <button className="original-notice-close" onClick={closeDialog} aria-label={c.close}><X size={22} /></button>
-        <FaGithub size={28} /><h2>{c.statsTitle}</h2><p>{c.statsBody}</p><a className="original-btn-primary" href={profile.github} target="_blank" rel="noopener noreferrer">{c.github}<ArrowUpRight size={16} /></a>
-      </div>}
+      </>}
     </dialog>
   </>;
 }
@@ -227,7 +223,7 @@ export function PortfolioHero({ lang, reduced }: { lang: Language; reduced: bool
       <p className="original-intro">{copy[lang].intro}</p>
       <div className="original-latest"><span>{c.latest}</span><a href={profile.latestProject} target="_blank" rel="noopener noreferrer">{c.latestText}<ArrowUpRight size={13} /></a></div>
       <div className="original-hero-buttons">
-        <a className="original-btn-primary" href="#projects">{c.projects}<ArrowDownRight size={16} /></a>
+        <a className="original-btn-primary" href="#stats">{c.projects}<ArrowDownRight size={16} /></a>
         <a className="original-btn-outline" href={profile.cv} target="_blank" rel="noopener noreferrer"><FileText size={15} />{c.read}</a>
         <a className="original-download" href={profile.cv} download="Ettore_Cirillo_CV.pdf"><Download size={15} />{c.download}</a>
       </div>

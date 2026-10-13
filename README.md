@@ -1,5 +1,28 @@
 # Ettore Cirillo — Portfolio
 
+## GitHub e contatti
+
+Il riquadro GitHub usa `src/data/github.json`, una copia datata dei dati pubblici
+scaricata direttamente da GitHub (calendario e API repository). Nel menu Windows
+scegli **7** per aggiornarla, oppure esegui `pnpm github:update` nel container.
+L'aggiornamento richiede rete, non credenziali; in caso di errore mantiene la copia
+precedente. Nessuna richiesta a GitHub parte dal browser dei visitatori.
+I contributi coprono i 365 giorni indicati; repository e stelle sono i totali
+pubblici al momento dell'aggiornamento; le stelle non sono mostrate nella pagina. I linguaggi sono ripartiti per numero
+di repository originali pubblici, esclusi i fork, non per byte o padronanza.
+
+Il modulo contatti è predisposto per EmailJS e resta disabilitato finché non
+sono configurati i tre identificativi pubblici in `.env.local`. Invio solo al clic,
+nessuna apertura automatica della posta e nessuna conferma prima della risposta
+del servizio. Il file vCard
+contiene nome, email e profilo GitHub; nessun indirizzo domestico o telefono.
+Projects, Achievements, Services, News e globo non sono mostrati. Decisioni in `TODO.md`.
+
+La guida `docs/CONTACT_AND_GITHUB_SETUP.md` descrive EmailJS, contributi privati
+e pubblicazione futura. `.github/workflows/pages.yml` aggiorna i dati durante
+la build quotidiana e pubblica su Pages, ma soltanto dopo l'abilitazione esplicita
+`ENABLE_PAGES_DEPLOY=true` e su `main`. Nessun workflow è stato attivato da questa sessione.
+
 Base bilingue IT/EN, React + TypeScript + Vite. Lavoro locale sul branch `dev`.
 Derivato selettivo da portfolio-react di Sagar Gupta (GPL-3.0): sfondo animato,
 palette e tipografia; sezioni e componenti personalizzati sui contenuti del CV.
@@ -33,6 +56,9 @@ docker compose --profile preview down
 
 - `src/content.ts`: testi IT/EN, link, esperienze, progetti e competenze.
 - `src/App.tsx`: sezioni, filtri e finestre di dettaglio.
+- `src/experience.ts`: esperienze IT/EN, date e progressione dei ruoli dal testo LinkedIn fornito.
+- `src/components/Experience.tsx` e `ExperienceScene.tsx`: timeline e illustrazioni animate.
+- `TODO.md`: funzioni e contenuti lasciati in standby.
 - `src/style.css`: stile e layout responsive.
 - `src/components/Globe.tsx`: globo originale (COBE MIT, asset incluso nel bundle).
 - `src/components/AmbientBackground.tsx`: componente adattato da portfolio-react.
@@ -47,18 +73,16 @@ L'impostazione di riduzione movimento del sistema è rispettata.
 
 ## Globo e visitatori
 
-Il globo ruota ed è trascinabile e controllabile con le frecce della tastiera.
-**Il mio percorso** mostra Roma, Milano e Stoccolma dal CV, non visitatori.
-**Visitatori** indica esplicitamente servizio non collegato, senza statistiche inventate.
-Per presenze reali occorrerà un backend esterno proprio: GitHub Pages serve file statici.
+Il globo è stato rimosso dalla pagina su richiesta dell'utente. Il componente è
+conservato per eventuali sviluppi futuri, ma non viene caricato dall'applicazione.
+Visitatori in tempo reale e relativo servizio restano in standby.
 Vedi `docs/PRIVACY_AND_LICENSES.md` per le decisioni necessarie.
 
 ## Pubblicazione futura
 
-Nessun push, merge o deploy è eseguito dal menu. Nessun workflow di deploy presente.
-Dopo l'approvazione si potrà aggiungere una GitHub Action per compilare `main` con
-`pnpm install --frozen-lockfile && pnpm build` e pubblicare `dist` su Pages. `base: '/'` è adatto al sito
-personale eccirillom.github.io.
+Nessun push, merge o deploy è eseguito dal menu. Il workflow Pages è predisposto
+ma inattivo senza opt-in. La guida di configurazione spiega come abilitarlo quando
+il lavoro sarà approvato su `main`. `base: '/'` è adatto a eccirillom.github.io.
 
 Prima della pubblicazione: confermare contenuti attuali e diritti delle immagini,
 finalizzare l'informativa per l'hosting scelto, rendere disponibile il sorgente

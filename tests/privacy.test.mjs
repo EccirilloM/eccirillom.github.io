@@ -8,8 +8,10 @@ function sourceFiles(dir) {
 }
 test('the preview does not record visitors or persist browser identifiers', () => {
   const source = sourceFiles('src').map(file => readFileSync(file, 'utf8')).join('\n');
-  assert.doesNotMatch(source, /\b(?:localStorage|sessionStorage|indexedDB)\b|document\.cookie|navigator\.geolocation|sendBeacon|\bfetch\s*\(|XMLHttpRequest/);
-  assert.doesNotMatch(source, /shengxiang-visitor-api|google-analytics|googletagmanager|emailjs|simpleanalytics/);
+  assert.doesNotMatch(source, /\b(?:localStorage|sessionStorage|indexedDB)\b|document\.cookie|navigator\.geolocation|sendBeacon|XMLHttpRequest/);
+  assert.doesNotMatch(source, /shengxiang-visitor-api|google-analytics|googletagmanager|simpleanalytics/);
+  const passiveSource = sourceFiles('src').filter(file => !file.endsWith('emailService.ts')).map(file => readFileSync(file, 'utf8')).join('\n');
+  assert.doesNotMatch(passiveSource, /\bfetch\b|https:\/\/api\.emailjs\.com/);
 });
 test('entry point loads no third-party scripts or remote fonts', () => {
   const html = readFileSync('index.html', 'utf8');

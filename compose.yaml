@@ -1,28 +1,55 @@
 name: ettore-portfolio
+
+# Only source files cross the host/container boundary. /app itself is NOT a
+# host bind mount: dependencies, package cache and build output stay in Docker.
+x-portfolio: &portfolio
+  build: .
+  init: true
+  env_file:
+    - path: .env.local
+      required: false
+  volumes:
+    - ./src:/app/src
+    - ./public:/app/public:ro
+    - ./scripts:/app/scripts:ro
+    - ./tests:/app/tests:ro
+    - ./docs:/app/docs:ro
+    - ./.github:/app/.github:ro
+    - ./package.json:/app/package.json
+    - ./pnpm-lock.yaml:/app/pnpm-lock.yaml
+    - ./tsconfig.json:/app/tsconfig.json:ro
+    - ./vite.config.ts:/app/vite.config.ts:ro
+    - ./index.html:/app/index.html:ro
+    - ./Dockerfile:/app/Dockerfile:ro
+    - ./compose.yaml:/app/compose.yaml:ro
+    - ./portfolio.cmd:/app/portfolio.cmd:ro
+    - ./.dockerignore:/app/.dockerignore:ro
+    - ./.gitignore:/app/.gitignore:ro
+    - ./.env.example:/app/.env.example:ro
+    - ./LICENSE:/app/LICENSE:ro
+    - ./THIRD_PARTY_NOTICES.md:/app/THIRD_PARTY_NOTICES.md:ro
+    - ./README.md:/app/README.md:ro
+    - ./TODO.md:/app/TODO.md:ro
+    - dependencies:/app/node_modules
+    - pnpm-store:/root/.local/share/pnpm/store
+    - build-output:/app/dist
+
 services:
   web:
-    build: .
+    <<: *portfolio
     ports:
       - "127.0.0.1:5173:5173"
-    volumes:
-      - .:/app
-      - dependencies:/app/node_modules
-    init: true
     healthcheck:
       test: ["CMD", "node", "-e", "fetch('http://localhost:5173').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
       interval: 3s
       timeout: 3s
       retries: 20
   preview:
+    <<: *portfolio
     profiles: ["preview"]
-    build: .
     command: ["sh", "-c", "pnpm build && pnpm preview"]
     ports:
       - "127.0.0.1:4173:4173"
-    volumes:
-      - .:/app
-      - dependencies:/app/node_modules
-    init: true
     healthcheck:
       test: ["CMD", "node", "-e", "fetch('http://localhost:4173').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
       interval: 3s
@@ -30,3 +57,5 @@ services:
       retries: 30
 volumes:
   dependencies:
+  pnpm-store:
+  build-output:

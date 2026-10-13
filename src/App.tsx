@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Mail, X, Pause, Play } from 'lucide-react';
+import { X, Pause, Play } from 'lucide-react';
 import { MotionConfig, useReducedMotion } from 'motion/react';
 import AmbientBackground from './components/AmbientBackground';
 import About from './components/About';
@@ -9,9 +9,10 @@ import Skills from './components/Skills';
 import GitHubProfile from './components/GitHubProfile';
 import Contact from './components/Contact';
 import StackBackdrop from './components/StackBackdrop';
-import { emailConfigured } from './emailConfig';
+import Footer from './components/Footer';
+import PrivacyNotice from './components/PrivacyNotice';
 import { PortfolioHeader, PortfolioHero } from './components/HeaderHero';
-import { copy, profile, type Language } from './content';
+import { copy, type Language } from './content';
 
 
 
@@ -47,12 +48,12 @@ export default function App() {
       <Education lang={lang} reduced={reduced} />
       <Skills lang={lang} reduced={reduced} />
       <GitHubProfile lang={lang} />
-      <Contact lang={lang} />
+      <Contact lang={lang} onPrivacy={() => setPrivacy(true)} />
     </main>
-    <footer><a className="wordmark" href="#home">ec<span>.</span></a><p>© {new Date().getFullYear()} Ettore Cirillo <span>· {c.footer}</span></p><button onClick={() => setPrivacy(true)}>{c.privacy}</button></footer>
+    <Footer lang={lang} reduced={reduced} onPrivacy={() => setPrivacy(true)} />
     <button className="motion-toggle" onClick={() => setMotionOverride(!reduced)} aria-label={reduced ? c.resumeMotion : c.motion} title={reduced ? c.resumeMotion : c.motion}>{reduced ? <Play size={14} /> : <Pause size={14} />}<span>{reduced ? c.resumeMotion : c.motion}</span></button>
     <dialog ref={dialog} className="detail-dialog" aria-labelledby="dialog-title" onCancel={close} onClose={close} onClick={e => { if (e.target === e.currentTarget) close(); }}><div className="dialog-inner"><button className="dialog-close icon-button" autoFocus onClick={close} aria-label={c.closePrivacy}><X /></button>
-      {privacy && <div className="dialog-copy privacy-copy"><span className="section-label">{c.privacyIntro}</span><h2 id="dialog-title">{c.privacyTitle}</h2><p>{c.privacyBody}</p><p>{emailConfigured ? c.privacyContactActive : c.privacyContactInactive}</p><p>{c.privacyHosting}</p><p>{c.credits}</p><p><a href={profile.source}>{c.source} ↗</a> · <a href="/LICENSE.txt">{c.license}</a> · <a href="/THIRD_PARTY_NOTICES.txt">{c.notices}</a></p><p><a href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages">GitHub Pages privacy ↗</a></p><a href={`mailto:${profile.email}`}><Mail size={15} /> {profile.email}</a></div>}
+      {privacy && <PrivacyNotice lang={lang} />}
     </div></dialog>
   </MotionConfig>;
 }

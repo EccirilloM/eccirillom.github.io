@@ -40,10 +40,8 @@ third-party trademarks or team materials are implied.
 
 Navbar, hero layout, typography, button styles, social tiles and shell-style command
 palette in HeaderHero.tsx and landing.css are adapted from the same GPL-3.0 template.
-maker-placeholder.json copies the template's Maker vector artwork, copyright Sagar
-Gupta, as a temporary placeholder explicitly requested by the user. It is not
-Ettore's personal avatar and must be replaced when the user's avatar is supplied.
-No portrait or professional data of the original author is used.
+The original Maker placeholder has been replaced by the personal Avataaars avatar.
+No original portrait or professional data is displayed.
 
 Yellowtail and Instrument Serif are also self-hosted via Fontsource, under OFL-1.1.
 Their full license texts are included in font-licenses.txt. Social and skill icons
@@ -122,7 +120,7 @@ ContributionCalendar and SplitBar styling from Sagar Gupta's portfolio-react
 the original author's statistics and third-party contribution API are not used.
 Contact.tsx adapts Contact, ContactCard and ContactForm styling from that same
 template. Original contact details and mail service configuration are not used.
-The form prepares a mailto draft, with no external delivery service.
+The form uses direct EmailJS delivery; a separate email link remains available.
 
 Update, 2026-10-13: draft handoff replaced by optional direct EmailJS delivery
 through its documented REST API. No original author's account IDs are used.
@@ -137,3 +135,14 @@ They are stored unchanged, with hyphenated filenames where applicable, and ident
 organisations in Ettore's experience and education. Marks and artwork remain the
 property of their respective owners; the application's GPL notice does not grant
 additional rights to these assets or imply endorsement by those organisations.
+
+## Footer — 2026-10-13
+
+Footer.tsx and footer.css adapt FooterContent, FooterSocial, FooterEndNote,
+FooterStatusBar and SlideToContact from Sagar Gupta's portfolio-react (GPL-3.0).
+Replaced identity, links and texts with Ettore's bilingual content. The mobile
+slider opens the contact form; the desktop control copies the email. The clock
+uses Europe/Rome. Original machine links and personal
+availability are not imported. Production includes corresponding source.tar.gz.
+
+Footer fidelity update: restored centered 22ch end note, original English wording, pill-shaped hold control with progress ring and mobile slider styling. FooterVitals.tsx adapts the original local-only Web Vitals row, using web-vitals (Apache-2.0); no measurements are stored or transmitted. Its dependency licence is included in production notices.

@@ -36,6 +36,12 @@ jobs:
       - name: Refresh public GitHub snapshot
         run: pnpm github:update
       - run: pnpm test
+      - name: Check contact configuration
+        run: node -e "for (const key of ['VITE_EMAILJS_SERVICE_ID','VITE_EMAILJS_TEMPLATE_ID','VITE_EMAILJS_PUBLIC_KEY']) { if (!process.env[key]?.trim()) { console.error('Missing repository variable ' + key); process.exitCode = 1; } }"
+        env:
+          VITE_EMAILJS_SERVICE_ID: ${{ vars.VITE_EMAILJS_SERVICE_ID }}
+          VITE_EMAILJS_TEMPLATE_ID: ${{ vars.VITE_EMAILJS_TEMPLATE_ID }}
+          VITE_EMAILJS_PUBLIC_KEY: ${{ vars.VITE_EMAILJS_PUBLIC_KEY }}
       - name: Build portfolio
         run: pnpm build
         env:

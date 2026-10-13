@@ -13,5 +13,6 @@ import './experience.css';
 import './education.css';
 import './skills.css';
 import './profile-contact.css';
+import './footer.css';
 
 createRoot(document.getElementById('root')!).render(<React.StrictMode><App /></React.StrictMode>);

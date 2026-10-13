@@ -8,7 +8,7 @@ import { contactDraft } from '../contactDraft';
 import { emailConfig, emailConfigured } from '../emailConfig';
 import { sendContact } from '../emailService';
 
-export default function Contact({ lang }: { lang: Language }) {
+export default function Contact({ lang, onPrivacy }: { lang: Language; onPrivacy: () => void }) {
   const it = lang === 'it';
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -68,7 +68,7 @@ export default function Contact({ lang }: { lang: Language }) {
         <div><label htmlFor="contact-message">{it ? 'Messaggio' : 'Message'}</label><textarea id="contact-message" name="message" rows={5} disabled={status === 'sending'} required minLength={10} maxLength={3000} value={message} onChange={e => setMessage(e.target.value)} placeholder={it ? 'Un’idea, un progetto o un’opportunità? Raccontami.' : 'An idea, a project or an opportunity? Tell me about it.'} /></div>
         <p id="contact-send-hint" className="contact-hint">{emailConfigured
           ? (it ? 'Nome, email e messaggio saranno inviati tramite EmailJS per permettermi di risponderti.' : 'Your name, email and message will be sent through EmailJS so I can reply.')
-          : (it ? 'Il modulo di invio è in preparazione. Intanto puoi usare i contatti qui accanto.' : 'The contact form is being set up. In the meantime, use the contact links alongside.')}</p>
+          : (it ? 'Il modulo di invio è in preparazione. Intanto puoi usare i contatti qui accanto.' : 'The contact form is being set up. In the meantime, use the contact links alongside.')} <button type="button" className="contact-privacy-link" onClick={onPrivacy}>{it ? 'Leggi l’informativa privacy' : 'Read the privacy notice'}</button></p>
         <button type="submit" disabled={!emailConfigured || status === 'sending'} aria-busy={status === 'sending'} className="original-btn-primary" aria-describedby="contact-send-hint"><Send size={16} aria-hidden="true" />{status === 'sending' ? messages.sending : it ? 'Invia messaggio' : 'Send message'}</button>
         <button type="button" className="contact-copy" disabled={status === 'sending'} onClick={copyDraft}><Copy size={14} aria-hidden="true" />{it ? 'Copia il messaggio' : 'Copy message'}</button>
         <p className="contact-feedback" role="status">{messages[status]}</p>

@@ -11,7 +11,8 @@ I contributi coprono i 365 giorni indicati; repository e stelle sono i totali
 pubblici al momento dell'aggiornamento; le stelle non sono mostrate nella pagina. I linguaggi sono ripartiti per numero
 di repository originali pubblici, esclusi i fork, non per byte o padronanza.
 
-Il modulo contatti è predisposto per EmailJS e resta disabilitato finché non
+Il modulo contatti usa EmailJS, configurato localmente e verificato da Ettore
+(consegna e Reply-To). In una nuova installazione resta disabilitato finché non
 sono configurati i tre identificativi pubblici in `.env.local`. Invio solo al clic,
 nessuna apertura automatica della posta e nessuna conferma prima della risposta
 del servizio. Il file vCard
@@ -68,7 +69,8 @@ docker compose --profile preview down
 - `src/components/StackBackdrop.tsx`: movimento delle icone durante lo scorrimento.
 
 La lingua iniziale è inglese; il selettore permette di passare in italiano. Preferenze lingua e movimento solo in memoria:
-nessun cookie, storage, API esterna, analytics o geolocalizzazione. Font locali.
+nessun cookie, storage persistente, analytics o geolocalizzazione. Font locali.
+L'unica API contattata dal sito è EmailJS, esclusivamente all'invio del modulo.
 L'impostazione di riduzione movimento del sistema è rispettata.
 
 ## Globo e visitatori
@@ -84,11 +86,21 @@ Nessun push, merge o deploy è eseguito dal menu. Il workflow Pages è predispos
 ma inattivo senza opt-in. La guida di configurazione spiega come abilitarlo quando
 il lavoro sarà approvato su `main`. `base: '/'` è adatto a eccirillom.github.io.
 
-Prima della pubblicazione: confermare contenuti attuali e diritti delle immagini,
-finalizzare l'informativa per l'hosting scelto, rendere disponibile il sorgente
-corrispondente alla build GPL con istruzioni e lockfile, verificare i link pubblici.
+Informativa IT/EN aggiornata per GitHub Pages, EmailJS e Gmail, accessibile dal
+footer e dal modulo. Dettagli e limiti della verifica in `docs/PRIVACY_AND_LICENSES.md`.
+Prima della pubblicazione completare le impostazioni della guida e, dopo il
+deploy, controllare sul dominio pubblico modulo, PDF, informativa e download.
 LICENSE.txt, THIRD_PARTY_NOTICES.txt, font-licenses.txt e dependency-licenses.txt sono
-inclusi nella build. I primi due sono disponibili anche in sviluppo.
+inclusi nella build. I primi due sono disponibili anche in sviluppo. `source.tar.gz`
+contiene i sorgenti corrispondenti a quella build, inclusi asset, snapshot GitHub,
+lockfile e istruzioni; esclude `.env.local`, cronologia Git, dipendenze e cache.
+La creazione dell'archivio richiede `tar`, già disponibile nell'immagine Docker
+e nei runner Linux di GitHub Actions.
+
+Il footer riprende struttura e stile del template: avatar, firma, colonne di link,
+social, copia email su desktop, slider verso il modulo su mobile e orologio Roma.
+Codice in `src/components/Footer.tsx`, stile in `src/footer.css`, informativa in
+`src/components/PrivacyNotice.tsx`.
 
 ## Contenuti da completare
 

@@ -12,11 +12,11 @@
 .github-period,.github-source-note{font:11px/1.7 var(--mono);color:#8a97a0}
 .github-calendar-scroll{overflow-x:auto;overscroll-behavior-x:contain;padding-bottom:4px}
 .github-calendar{display:block;width:100%;min-width:650px;height:auto}
-.github-calendar [data-level="0"]{fill:#1d2529}.github-calendar [data-level="1"]{fill:#173e6e}.github-calendar [data-level="2"]{fill:#2563a5}.github-calendar [data-level="3"]{fill:#3c87d8}.github-calendar [data-level="4"]{fill:#80bbfa}
+.github-calendar [data-level="0"]{fill:#1d2529}.github-calendar [data-level="1"]{fill:#0e4429}.github-calendar [data-level="2"]{fill:#006d32}.github-calendar [data-level="3"]{fill:#26a641}.github-calendar [data-level="4"]{fill:#39d353}
 .github-months{display:grid;min-width:650px;margin-bottom:6px;font:10px var(--mono);color:#8a97a0}
 .github-months>span{grid-row:1;white-space:nowrap}
 .github-legend{display:flex;align-items:center;justify-content:flex-end;gap:5px;font:10px var(--mono);color:#8a97a0}
-.github-legend i{width:10px;height:10px;border-radius:2px;background:#1d2529}.github-legend [data-level="1"]{background:#173e6e}.github-legend [data-level="2"]{background:#2563a5}.github-legend [data-level="3"]{background:#3c87d8}.github-legend [data-level="4"]{background:#80bbfa}
+.github-legend i{width:10px;height:10px;border-radius:2px;background:#1d2529}.github-legend [data-level="1"]{background:#0e4429}.github-legend [data-level="2"]{background:#006d32}.github-legend [data-level="3"]{background:#26a641}.github-legend [data-level="4"]{background:#39d353}
 .github-languages h4{font:11px/1.6 var(--mono);color:#9ca9b0;margin-bottom:12px}
 .github-language-bar{display:flex;gap:2px;height:7px;border-radius:5px;overflow:hidden}
 .github-languages ul{list-style:none;padding:0;margin:12px 0 0;display:flex;flex-wrap:wrap;gap:10px 16px}

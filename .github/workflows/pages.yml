@@ -35,6 +35,8 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - name: Refresh public GitHub snapshot
         run: pnpm github:update
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
       - run: pnpm test
       - name: Check contact configuration
         run: node -e "for (const key of ['VITE_EMAILJS_SERVICE_ID','VITE_EMAILJS_TEMPLATE_ID','VITE_EMAILJS_PUBLIC_KEY']) { if (!process.env[key]?.trim()) { console.error('Missing repository variable ' + key); process.exitCode = 1; } }"

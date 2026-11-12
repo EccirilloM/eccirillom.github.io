@@ -6,7 +6,15 @@ const now = new Date();
 const end = now.toISOString().slice(0, 10);
 const year = now.getUTCFullYear();
 async function request(url, json = true) {
-  const response = await fetch(url, { headers: { 'User-Agent': 'Ettore-Cirillo-Portfolio', Accept: json ? 'application/vnd.github+json' : 'text/html', 'Accept-Language': 'en-US' }, signal: AbortSignal.timeout(20000) });
+  const headers = {
+    'User-Agent': 'Ettore-Cirillo-Portfolio',
+    Accept: json ? 'application/vnd.github+json' : 'text/html',
+    'Accept-Language': 'en-US',
+  };
+  if (new URL(url).origin === 'https://api.github.com' && process.env.GITHUB_TOKEN) {
+    headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
+  }
+  const response = await fetch(url, { headers, signal: AbortSignal.timeout(20000) });
   if (!response.ok) throw new Error(`GitHub HTTP ${response.status}: ${url}`);
   return json ? response.json() : response.text();
 }

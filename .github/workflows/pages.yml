@@ -1,11 +1,11 @@
-name: Portfolio Pages and daily GitHub refresh
+name: Portfolio Pages and weekly GitHub refresh
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
   schedule:
-    - cron: '17 7 * * *'
+    - cron: '17 7 * * 1'
 
 permissions:
   contents: read

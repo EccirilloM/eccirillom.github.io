@@ -88,7 +88,7 @@ Quando sarà il momento di pubblicare:
 
    Sono valori pubblici destinati al frontend. Non inserire la Private Key.
 4. Nella stessa pagina creare **ENABLE_PAGES_DEPLOY** con valore `true`.
-5. In **Actions**, avviare il workflow *Portfolio Pages and daily GitHub refresh*
+5. In **Actions**, avviare il workflow *Portfolio Pages and weekly GitHub refresh*
    su `main`. Configurare l'ambiente `github-pages` per consentire solo `main`.
 
 Collegamenti diretti alla repository:
@@ -112,7 +112,7 @@ verifica eventuali restrizioni EmailJS sul dominio pubblico. Controllare il
 timestamp del calendario per confermare l'aggiornamento nella build pubblicata.
 
 Da quel momento il workflow aggiorna il calendario e ricostruisce il sito ogni
-giorno alle **07:17 UTC** (08:17 in inverno, 09:17 in estate a Roma), oltre che
+lunedì alle **07:17 UTC** (08:17 in inverno, 09:17 in estate a Roma), oltre che
 a ogni push su main o avvio manuale. GitHub può ritardare i job pianificati.
 Nessun commit automatico: la nuova copia dei dati entra nell'artefatto pubblicato.
 Se il recupero dati fallisce, la pubblicazione si interrompe e resta il sito
